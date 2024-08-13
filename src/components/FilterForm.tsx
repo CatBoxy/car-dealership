@@ -41,7 +41,7 @@ export default function HomeForm({ initialModels }: HomeFormProps) {
         </SelectTrigger>
         <SelectContent>
           {models.map((model) => (
-            <SelectItem key={model.MakeId} value={model.MakeName}>
+            <SelectItem key={model.MakeId} value={model.MakeId.toString()}>
               {model.MakeName}
             </SelectItem>
           ))}
