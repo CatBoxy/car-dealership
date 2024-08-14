@@ -4,13 +4,22 @@ import VehicleCard from "./VehicleCard";
 
 interface SearchResultsProps {
   initialModels: ModelYearResult[];
+  year: string;
 }
 
-export default function SearchResults({ initialModels }: SearchResultsProps) {
+export default function SearchResults({
+  initialModels,
+  year
+}: SearchResultsProps) {
   return (
     <div>
       {initialModels.map((model) => (
-        <VehicleCard key={model.Make_ID} something={"asd"} />
+        <VehicleCard
+          key={model.Make_ID}
+          modelName={model.Model_Name}
+          makeName={model.Make_Name}
+          year={year}
+        />
       ))}
     </div>
   );

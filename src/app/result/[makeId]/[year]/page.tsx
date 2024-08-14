@@ -31,7 +31,7 @@ export default async function ResultPage({
     <main className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Result Page</h1>
       <Suspense fallback={<div>Loading...</div>}>
-        <SearchResults initialModels={Results} />
+        <SearchResults initialModels={Results} year={year} />
       </Suspense>
     </main>
   );
