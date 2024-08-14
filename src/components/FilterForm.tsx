@@ -72,7 +72,7 @@ export default function HomeForm({ initialModels }: HomeFormProps) {
         </SelectTrigger>
         <SelectContent>
           {years.map((year) => (
-            <SelectItem key={year} value={year}>
+            <SelectItem key={year} value={year} className="text-sky-700">
               {year}
             </SelectItem>
           ))}
