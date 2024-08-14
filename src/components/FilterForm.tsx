@@ -47,12 +47,16 @@ export default function HomeForm({ initialModels }: HomeFormProps) {
         value={formState.selectedModel}
         onValueChange={handleChange("selectedModel")}
       >
-        <SelectTrigger className="w-full">
+        <SelectTrigger className="w-full bg-sky-50 border-2 border-sky-500">
           <SelectValue placeholder="Select a vehicle model" />
         </SelectTrigger>
         <SelectContent>
           {initialModels.map((model) => (
-            <SelectItem key={model.MakeId} value={model.MakeId.toString()}>
+            <SelectItem
+              key={model.MakeId}
+              value={model.MakeId.toString()}
+              className="text-sky-700"
+            >
               {model.MakeName}
             </SelectItem>
           ))}
@@ -63,7 +67,7 @@ export default function HomeForm({ initialModels }: HomeFormProps) {
         value={formState.selectedYear}
         onValueChange={handleChange("selectedYear")}
       >
-        <SelectTrigger className="w-full">
+        <SelectTrigger className="w-full bg-sky-50 border-2 border-sky-500">
           <SelectValue placeholder="Select a year" />
         </SelectTrigger>
         <SelectContent>
@@ -76,6 +80,7 @@ export default function HomeForm({ initialModels }: HomeFormProps) {
       </Select>
 
       <Button
+        className="bg-sky-50 hover:bg-sky-100 border border-slate-300 text-slate-700 font-medium px-4 py-2 rounded-md transition-colors duration-300"
         type="submit"
         disabled={!formState.selectedModel || !formState.selectedYear}
       >
