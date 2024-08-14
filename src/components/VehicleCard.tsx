@@ -14,11 +14,11 @@ export default function VehicleCard({
   year
 }: VehicleCardProps) {
   return (
-    <Card className="w-[500px] h-[180px]">
-      <CardHeader>
+    <Card className="p-4">
+      <CardHeader className="mb-4">
         <CardTitle>Vehicle Details</CardTitle>
       </CardHeader>
-      <CardContent className="pb-6">
+      <CardContent>
         <div className="grid grid-cols-3 w-full items-center gap-2">
           <div className="flex flex-col space-y-1">
             <Label htmlFor="name">Make Name</Label>

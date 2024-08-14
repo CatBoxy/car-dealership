@@ -12,7 +12,7 @@ export default function SearchResults({
   year
 }: SearchResultsProps) {
   return (
-    <div>
+    <div className="space-y-4">
       {initialModels.map((model) => (
         <VehicleCard
           key={model.Make_ID}
