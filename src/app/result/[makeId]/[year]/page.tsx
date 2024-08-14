@@ -1,4 +1,6 @@
+import SearchResults from "@/components/SearchResults";
 import { getModels, getModelsByMakeAndYear } from "@/lib/api";
+import { Suspense } from "react";
 
 export async function generateStaticParams() {
   const models = await getModels();
@@ -23,13 +25,14 @@ export default async function ResultPage({
 }: {
   params: { makeId: string; year: string };
 }) {
-  const data = await getModelsByMakeAndYear(makeId, year);
+  const { Results } = await getModelsByMakeAndYear(makeId, year);
 
   return (
-    <div>
-      <h1>Result Page</h1>
-      <p>Make ID: {makeId}</p>
-      <p>Year: {year}</p>
-    </div>
+    <main className="container mx-auto p-4">
+      <h1 className="text-2xl font-bold mb-4">Result Page</h1>
+      <Suspense fallback={<div>Loading...</div>}>
+        <SearchResults initialModels={Results} />
+      </Suspense>
+    </main>
   );
 }
