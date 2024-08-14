@@ -18,29 +18,40 @@ interface HomeFormProps {
 
 export default function HomeForm({ initialModels }: HomeFormProps) {
   const router = useRouter();
-  const [models, setModels] = useState(initialModels);
-  const [selectedModel, setSelectedModel] = useState("");
-  const [selectedYear, setSelectedYear] = useState("");
   const currentYear = new Date().getFullYear();
   const years = Array.from({ length: currentYear - 2014 }, (_, i) =>
     (2015 + i).toString()
   );
 
+  const [formState, setFormState] = useState({
+    selectedModel: "",
+    selectedYear: ""
+  });
+
+  const handleChange = (field: keyof typeof formState) => (value: string) => {
+    setFormState((prev) => ({ ...prev, [field]: value }));
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (selectedModel && selectedYear) {
-      router.push(`/result/${selectedModel}/${selectedYear}`);
+    if (formState.selectedModel && formState.selectedYear) {
+      router.push(
+        `/result/${formState.selectedModel}/${formState.selectedYear}`
+      );
     }
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <Select value={selectedModel} onValueChange={setSelectedModel}>
+      <Select
+        value={formState.selectedModel}
+        onValueChange={handleChange("selectedModel")}
+      >
         <SelectTrigger className="w-full">
           <SelectValue placeholder="Select a vehicle model" />
         </SelectTrigger>
         <SelectContent>
-          {models.map((model) => (
+          {initialModels.map((model) => (
             <SelectItem key={model.MakeId} value={model.MakeId.toString()}>
               {model.MakeName}
             </SelectItem>
@@ -48,7 +59,10 @@ export default function HomeForm({ initialModels }: HomeFormProps) {
         </SelectContent>
       </Select>
 
-      <Select value={selectedYear} onValueChange={setSelectedYear}>
+      <Select
+        value={formState.selectedYear}
+        onValueChange={handleChange("selectedYear")}
+      >
         <SelectTrigger className="w-full">
           <SelectValue placeholder="Select a year" />
         </SelectTrigger>
@@ -61,7 +75,10 @@ export default function HomeForm({ initialModels }: HomeFormProps) {
         </SelectContent>
       </Select>
 
-      <Button type="submit" disabled={!selectedModel || !selectedYear}>
+      <Button
+        type="submit"
+        disabled={!formState.selectedModel || !formState.selectedYear}
+      >
         Next
       </Button>
     </form>
