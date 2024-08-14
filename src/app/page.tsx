@@ -8,7 +8,8 @@ export default async function Filter() {
 
   return (
     <div className="container mx-auto p-4 max-w-[600px]">
-      <h1 className="text-2xl font-bold mb-4">Home Page</h1>
+      <h1 className="text-2xl font-bold mb-4">Home</h1>
+      <h3 className="mb-2">Please select a vehicle model and year</h3>
       <Suspense fallback={<FilterFormSkeleton />}>
         <FilterForm initialModels={Results} />
       </Suspense>

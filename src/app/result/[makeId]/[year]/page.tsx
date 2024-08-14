@@ -33,7 +33,7 @@ export default async function ResultPage({
   return (
     <div className="container mx-auto p-4 max-w-[600px]">
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold">Results Page</h1>
+        <h1 className="text-2xl font-bold">Results</h1>
         <Link href="/" className="hover:pointer">
           <Home size={24} />
         </Link>
